@@ -42,3 +42,92 @@ class Member:
         if not isinstance(child, Member):
             raise ValueError('Invalid value for child')
         self.children.append(child)
+
+    def get_paternal_grandmother(self):
+        if not self.father:
+            return None
+        if not self.father.mother:
+            return None
+        return self.father.mother
+
+    def get_maternal_grandmother(self):
+        if not self.mother:
+            return None
+        if not self.mother.mother:
+            return None
+        return self.mother.mother
+
+    def get_spouse_mother(self):
+        if not self.spouse:
+            return None
+        if not self.spouse.mother:
+            return None
+        return self.spouse.mother
+
+    def get_paternal_aunt(self):
+        grandmother = self.get_paternal_grandmother()
+        if not grandmother:
+            return []
+        if not grandmother.children:
+            return []
+        return list(filter(lambda x: x.gender == Gender.female, grandmother.children))
+
+    def get_paternal_uncle(self):
+        grandmother = self.get_paternal_grandmother()
+        if not grandmother:
+            return []
+        if not grandmother.children:
+            return []
+        return list(filter(lambda x: x.gender == Gender.male and x.name != self.father.name, grandmother.children))
+
+    def get_maternal_aunt(self):
+        grandmother = self.get_maternal_grandmother()
+        if not grandmother:
+            return []
+        if not grandmother.children:
+            return []
+        return list(filter(lambda x: x.gender == Gender.female and x.name != self.mother.name, grandmother.children))
+
+    def get_maternal_uncle(self):
+        grandmother = self.get_maternal_grandmother()
+        if not grandmother:
+            return []
+        if not grandmother.children:
+            return []
+        return list(filter(lambda x: x.gender == Gender.male, grandmother.children))
+
+    def get_brother_in_law(self):
+        spouses_mother = self.get_spouse_mother()
+        if not spouses_mother:
+            return []
+        if not spouses_mother.children:
+            return []
+        return list(filter(lambda x: x.gender == Gender.male and x.name != self.spouse.name, spouses_mother.children))
+
+    def get_sister_in_law(self):
+        spouses_mother = self.get_spouse_mother()
+        if not spouses_mother:
+            return []
+        if not spouses_mother.children:
+            return []
+        return list(filter(lambda x: x.gender == Gender.female and x.name != self.spouse.name, spouses_mother.children))
+
+    def get_sons(self):
+        if not self.children:
+            return []
+        return list(filter(lambda x: x.gender == Gender.male, self.children))
+
+    def get_daughters(self):
+        if not self.children:
+            return []
+        return list(filter(lambda x: x.gender == Gender.female, self.children))
+
+    def get_siblings(self):
+        if not self.mother:
+            return []
+
+        # not possible by definition
+        if not self.mother.children:
+            return []
+
+        return list(filter(lambda x: x.name != self.name, self.mother.children))
