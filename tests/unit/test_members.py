@@ -1,18 +1,8 @@
 from unittest import TestCase
 from unittest.mock import patch, Mock
+
 from family_tree.member import Member, Gender
-
-
-def create_fake_member(id=None, name=None, gender=None, mother=None, father=None, spouse=None, children=None):
-    member = Mock()
-    member.id = id
-    member.name = name
-    member.gender = gender
-    member.mother = mother
-    member.father = father
-    member.spouse = spouse
-    member.children = children
-    return member
+from tests.unit import create_fake_member
 
 
 class TestMember(TestCase):
@@ -22,16 +12,16 @@ class TestMember(TestCase):
 
     def test_initialization(self):
         # check instance
-        self.assertEqual(isinstance(self.member, Member), True)
+        self.assertEqual(isinstance(self.member, Member), True, "Member is not a family member")
 
         # check properties
-        self.assertEqual(self.member.id, 1)
-        self.assertEqual(self.member.name, "Name")
-        self.assertEqual(self.member.gender, Gender.male)
-        self.assertEqual(self.member.mother, None)
-        self.assertEqual(self.member.father, None)
-        self.assertEqual(self.member.spouse, None)
-        self.assertEqual(self.member.children, [])
+        self.assertEqual(self.member.id, 1, "Init - Member's ID doesn't match")
+        self.assertEqual(self.member.name, "Name", "Init - Member's name doesn't match")
+        self.assertEqual(self.member.gender, Gender.male, "Init - Member's gender doesn't match")
+        self.assertEqual(self.member.mother, None, "Init - Member has an unexpected mother")
+        self.assertEqual(self.member.father, None, "Init - Member has an unexpected father")
+        self.assertEqual(self.member.spouse, None, "Init - Member has an unexpected spouse")
+        self.assertEqual(self.member.children, [], "Init - Member has unknown children")
 
         # edge case for gender
         self.assertRaises(ValueError, Member, 2, "SomeOtherPerson", "Something")
@@ -49,8 +39,8 @@ class TestMember(TestCase):
 
         # success case
         self.member.set_mother(mother_demo_c)
-        self.assertEqual(self.member.mother.name, "mother_demo_c")
-        self.assertEqual(self.member.mother.gender, Gender.female)
+        self.assertEqual(self.member.mother.name, "mother_demo_c", "Set mother - mother's name doesn't match")
+        self.assertEqual(self.member.mother.gender, Gender.female, "Set mother - mother's gender doesn't match")
 
         print("Test MTF_UT_0002 ----> PASSED")
 
@@ -65,8 +55,8 @@ class TestMember(TestCase):
 
         # success case
         self.member.set_father(father_demo_c)
-        self.assertEqual(self.member.father.name, "father_demo_c")
-        self.assertEqual(self.member.father.gender, Gender.male)
+        self.assertEqual(self.member.father.name, "father_demo_c", "Set father - father's name doesn't match")
+        self.assertEqual(self.member.father.gender, Gender.male, "Set father - father's gender doesn't match")
 
         print("Test MTF_UT_0003 ----> PASSED")
 
@@ -81,8 +71,8 @@ class TestMember(TestCase):
 
         # success case
         self.member.set_spouse(spouse_demo_c)
-        self.assertEqual(self.member.spouse.name, "spouse_demo_c")
-        self.assertEqual(self.member.spouse.gender, Gender.female)
+        self.assertEqual(self.member.spouse.name, "spouse_demo_c", "Set spouse - spouse's name doesn't match")
+        self.assertEqual(self.member.spouse.gender, Gender.female, "Set spouse - spouse's gender doesn't match")
 
         print("Test MTF_UT_0004 ----> PASSED")
 
@@ -95,9 +85,9 @@ class TestMember(TestCase):
 
         # success case
         self.member.add_child(child_demo_b)
-        self.assertEqual(len(self.member.children), 1)
-        self.assertEqual(self.member.children[0].name, "child_demo_b")
-        self.assertEqual(self.member.children[0].gender, Gender.female)
+        self.assertEqual(len(self.member.children), 1, "Add child - child was not added")
+        self.assertEqual(self.member.children[0].name, "child_demo_b", "Add child - child's name doesn't match")
+        self.assertEqual(self.member.children[0].gender, Gender.female, "Add child - child's gender doesn't match")
 
         print("Test MTF_UT_0005 ----> PASSED")
 
@@ -107,13 +97,13 @@ class TestMember(TestCase):
         grandmother = Member(7, "NewMemberGrandmother", "Female")
 
         # fail case
-        self.assertEqual(member.get_paternal_grandmother(), None)
+        self.assertEqual(member.get_paternal_grandmother(), None, "member has an unexpected paternal grandmother")
 
         member.father = father
-        self.assertEqual(member.get_paternal_grandmother(), None)
+        self.assertEqual(member.get_paternal_grandmother(), None, "member's father has an unexpected mother")
 
         member.father.mother = grandmother
-        self.assertEqual(member.get_paternal_grandmother(), grandmother)
+        self.assertEqual(member.get_paternal_grandmother(), grandmother, "member's paternal grandmother doesn't match")
 
         print("Test MTF_UT_0006 ----> PASSED")
 
@@ -123,13 +113,13 @@ class TestMember(TestCase):
         grandmother = Member(10, "NewMemberGrandmother", "Female")
 
         # fail case
-        self.assertEqual(member.get_maternal_grandmother(), None)
+        self.assertEqual(member.get_maternal_grandmother(), None, "member has an unexpected maternal grandmother")
 
         member.mother = mother
-        self.assertEqual(member.get_maternal_grandmother(), None)
+        self.assertEqual(member.get_maternal_grandmother(), None, "member's mother has an unexpected mother")
 
         member.mother.mother = grandmother
-        self.assertEqual(member.get_maternal_grandmother(), grandmother)
+        self.assertEqual(member.get_maternal_grandmother(), grandmother, "member's maternal grandmother doesn't match")
 
         print("Test MTF_UT_0007 ----> PASSED")
 
@@ -139,13 +129,13 @@ class TestMember(TestCase):
         spouse_mother = Member(13, "NewMemberSpouseMother", "Female")
 
         # fail case
-        self.assertEqual(member.get_spouse_mother(), None)
+        self.assertEqual(member.get_spouse_mother(), None, "member has an unexpected spouse's mother")
 
         member.spouse = spouse
-        self.assertEqual(member.get_spouse_mother(), None)
+        self.assertEqual(member.get_spouse_mother(), None, "member's spouse has an unexpected mother")
 
         member.spouse.mother = spouse_mother
-        self.assertEqual(member.get_spouse_mother(), spouse_mother)
+        self.assertEqual(member.get_spouse_mother(), spouse_mother, "member's spouse's mother doesn't match")
 
         print("Test MTF_UT_0008 ----> PASSED")
 
@@ -163,15 +153,15 @@ class TestMember(TestCase):
         self.assertEqual(isinstance(self.member.get_paternal_grandmother, Mock), True)
 
         # check for None values
-        self.assertEqual(self.member.get_paternal_aunt(), [])
-        self.assertEqual(self.member.get_paternal_aunt(), [])
-        self.assertEqual(self.member.get_paternal_aunt(), [])
-        self.assertEqual(self.member.get_paternal_aunt(), [])
+        self.assertEqual(self.member.get_paternal_aunt(), [], "Get paternal aunt - unexpected paternal grandmother")
+        self.assertEqual(self.member.get_paternal_aunt(), [], "Get paternal aunt - paternal grandmother has unknown children")
+        self.assertEqual(self.member.get_paternal_aunt(), [], "Get paternal aunt - unexpected aunts")
+        self.assertEqual(self.member.get_paternal_aunt(), [], "Get paternal aunt - some uncles are actually aunts")
 
         paternal_aunt = self.member.get_paternal_aunt()
-        self.assertEqual(len(paternal_aunt), 1)
-        self.assertEqual(paternal_aunt[0].name, "Aunt")
-        self.assertEqual(paternal_aunt[0].gender, Gender.female)
+        self.assertEqual(len(paternal_aunt), 1, "Get paternal aunt - no. of aunts doesn't match")
+        self.assertEqual(paternal_aunt[0].name, "Aunt", "Get paternal aunt - aunt's name doesn't match")
+        self.assertEqual(paternal_aunt[0].gender, Gender.female, "Get paternal aunt - aunt's gender doesn't match")
 
         # to check that the mock_get_paternal_grandmother was called instead of self.member.get_paternal_grandmother
         mock_get_paternal_grandmother.assert_called_with()
@@ -193,15 +183,15 @@ class TestMember(TestCase):
         self.assertEqual(isinstance(self.member.get_paternal_grandmother, Mock), True)
 
         # check for None values
-        self.assertEqual(self.member.get_paternal_uncle(), [])
-        self.assertEqual(self.member.get_paternal_uncle(), [])
-        self.assertEqual(self.member.get_paternal_uncle(), [])
-        self.assertEqual(self.member.get_paternal_uncle(), [])
+        self.assertEqual(self.member.get_paternal_uncle(), [], "Get paternal uncle - unexpected paternal grandmother")
+        self.assertEqual(self.member.get_paternal_uncle(), [], "Get paternal uncle - paternal grandmother has unknown children")
+        self.assertEqual(self.member.get_paternal_uncle(), [], "Get paternal uncle - unexpected uncles")
+        self.assertEqual(self.member.get_paternal_uncle(), [], "Get paternal uncle - some aunts are actually uncle")
 
         paternal_uncle = self.member.get_paternal_uncle()
-        self.assertEqual(len(paternal_uncle), 1)
-        self.assertEqual(paternal_uncle[0].name, "Uncle")
-        self.assertEqual(paternal_uncle[0].gender, Gender.male)
+        self.assertEqual(len(paternal_uncle), 1, "Get paternal uncle - no. of uncles doesn't match")
+        self.assertEqual(paternal_uncle[0].name, "Uncle", "Get paternal uncle - uncle's name doesn't match")
+        self.assertEqual(paternal_uncle[0].gender, Gender.male, "Get paternal uncle - uncle's gender doesn't match")
 
         # to check that the mock_get_paternal_grandmother was called instead of self.member.get_paternal_grandmother
         mock_get_paternal_grandmother.assert_called_with()
@@ -223,15 +213,15 @@ class TestMember(TestCase):
         self.assertEqual(isinstance(self.member.get_maternal_grandmother, Mock), True)
 
         # check for None values
-        self.assertEqual(self.member.get_maternal_aunt(), [])
-        self.assertEqual(self.member.get_maternal_aunt(), [])
-        self.assertEqual(self.member.get_maternal_aunt(), [])
-        self.assertEqual(self.member.get_maternal_aunt(), [])
+        self.assertEqual(self.member.get_maternal_aunt(), [], "Get maternal aunt - unexpected maternal grandmother")
+        self.assertEqual(self.member.get_maternal_aunt(), [], "Get maternal aunt - maternal grandmother has unknown children")
+        self.assertEqual(self.member.get_maternal_aunt(), [], "Get maternal aunt - unexpected aunts")
+        self.assertEqual(self.member.get_maternal_aunt(), [], "Get maternal aunt - some uncles are actually aunts")
 
         maternal_aunt = self.member.get_maternal_aunt()
-        self.assertEqual(len(maternal_aunt), 1)
-        self.assertEqual(maternal_aunt[0].name, "Aunt")
-        self.assertEqual(maternal_aunt[0].gender, Gender.female)
+        self.assertEqual(len(maternal_aunt), 1, "Get maternal aunt - no. of aunts doesn't match")
+        self.assertEqual(maternal_aunt[0].name, "Aunt", "Get maternal aunt - aunt's name doesn't match")
+        self.assertEqual(maternal_aunt[0].gender, Gender.female, "Get paternal aunt - aunt's gender doesn't match")
 
         # to check that the mock_get_maternal_grandmother was called instead of self.member.get_maternal_grandmother
         mock_get_maternal_grandmother.assert_called_with()
@@ -252,15 +242,15 @@ class TestMember(TestCase):
         self.assertEqual(isinstance(self.member.get_maternal_grandmother, Mock), True)
 
         # check for None values
-        self.assertEqual(self.member.get_maternal_uncle(), [])
-        self.assertEqual(self.member.get_maternal_uncle(), [])
-        self.assertEqual(self.member.get_maternal_uncle(), [])
-        self.assertEqual(self.member.get_maternal_uncle(), [])
+        self.assertEqual(self.member.get_maternal_uncle(), [], "Get maternal uncle - unexpected maternal grandmother")
+        self.assertEqual(self.member.get_maternal_uncle(), [], "Get maternal uncle - maternal grandmother has unknown children")
+        self.assertEqual(self.member.get_maternal_uncle(), [], "Get maternal uncle - unexpected uncles")
+        self.assertEqual(self.member.get_maternal_uncle(), [], "Get maternal uncle - some aunts are actually uncle")
 
         maternal_uncle = self.member.get_maternal_uncle()
-        self.assertEqual(len(maternal_uncle), 1)
-        self.assertEqual(maternal_uncle[0].name, "Uncle")
-        self.assertEqual(maternal_uncle[0].gender, Gender.male)
+        self.assertEqual(len(maternal_uncle), 1, "Get maternal uncle - no. of uncles doesn't match")
+        self.assertEqual(maternal_uncle[0].name, "Uncle", "Get maternal uncle - uncle's name doesn't match")
+        self.assertEqual(maternal_uncle[0].gender, Gender.male, "Get maternal uncle - uncle's gender doesn't match")
 
         # to check that the mock_get_maternal_grandmother was called instead of self.member.get_maternal_grandmother
         mock_get_maternal_grandmother.assert_called_with()
@@ -281,15 +271,15 @@ class TestMember(TestCase):
         self.assertEqual(isinstance(self.member.get_spouse_mother, Mock), True)
 
         # check for None values
-        self.assertEqual(self.member.get_brother_in_law(), [])
-        self.assertEqual(self.member.get_brother_in_law(), [])
-        self.assertEqual(self.member.get_brother_in_law(), [])
-        self.assertEqual(self.member.get_brother_in_law(), [])
+        self.assertEqual(self.member.get_brother_in_law(), [], "Get brother in law - unexpected spouse mother")
+        self.assertEqual(self.member.get_brother_in_law(), [], "Get brother in law - spouse mother has unknown children")
+        self.assertEqual(self.member.get_brother_in_law(), [], "Get brother in law - unexpected brothers in law")
+        self.assertEqual(self.member.get_brother_in_law(), [], "Get brother in law - some brothers in law are actually sisters in law")
 
         brother_in_law = self.member.get_brother_in_law()
-        self.assertEqual(len(brother_in_law), 1)
-        self.assertEqual(brother_in_law[0].name, "Brother-In-Law")
-        self.assertEqual(brother_in_law[0].gender, Gender.male)
+        self.assertEqual(len(brother_in_law), 1, "Get brother in law - no. of brothers in law doesn't match")
+        self.assertEqual(brother_in_law[0].name, "Brother-In-Law", "Get brother in law - brother's in law name doesn't match")
+        self.assertEqual(brother_in_law[0].gender, Gender.male, "Get brother in law - brother's in law gender doesn't match")
 
         # to check that the mock_get_spouse_mother was called instead of self.member.get_spouse_mother
         mock_get_spouse_mother.assert_called_with()
@@ -311,15 +301,15 @@ class TestMember(TestCase):
         self.assertEqual(isinstance(self.member.get_spouse_mother, Mock), True)
 
         # check for None values
-        self.assertEqual(self.member.get_sister_in_law(), [])
-        self.assertEqual(self.member.get_sister_in_law(), [])
-        self.assertEqual(self.member.get_sister_in_law(), [])
-        self.assertEqual(self.member.get_sister_in_law(), [])
+        self.assertEqual(self.member.get_sister_in_law(), [], "Get sister in law - unexpected spouse mother")
+        self.assertEqual(self.member.get_sister_in_law(), [], "Get sister in law - spouse mother has unknown children")
+        self.assertEqual(self.member.get_sister_in_law(), [], "Get sister in law - unexpected sisters in law")
+        self.assertEqual(self.member.get_sister_in_law(), [], "Get sister in law - some sisters in law are actually brothers in law")
 
         sister_in_law = self.member.get_sister_in_law()
-        self.assertEqual(len(sister_in_law), 1)
-        self.assertEqual(sister_in_law[0].name, "Sister-In-Law")
-        self.assertEqual(sister_in_law[0].gender, Gender.female)
+        self.assertEqual(len(sister_in_law), 1, "Get sister in law - no. of sisters in law doesn't match")
+        self.assertEqual(sister_in_law[0].name, "Sister-In-Law", "Get sister in law - sister's in law name doesn't match")
+        self.assertEqual(sister_in_law[0].gender, Gender.female, "Get sister in law - sister's in law gender doesn't match")
 
         # to check that the mock_get_spouse_mother was called instead of self.member.get_spouse_mother
         mock_get_spouse_mother.assert_called_with()
@@ -331,14 +321,16 @@ class TestMember(TestCase):
         son = Member(15, "Son", "Male")
         daughter = Member(16, "Daughter", "Female")
 
-        self.assertEqual(member.get_sons(), [])
+        self.assertEqual(member.get_sons(), [], "Get sons - unexpected sons")
+
         member.children.append(daughter)
-        self.assertEqual(member.get_sons(), [])
+        self.assertEqual(member.get_sons(), [], "Get sons - daughter is actually a son")
+
         member.children.append(son)
         sons = member.get_sons()
-        self.assertEqual(len(sons), 1)
-        self.assertEqual(sons[0].name, "Son")
-        self.assertEqual(sons[0].gender, Gender.male)
+        self.assertEqual(len(sons), 1, "Get sons - no. of sons doesn't match")
+        self.assertEqual(sons[0].name, "Son", "Get sons - son's name doesn't match")
+        self.assertEqual(sons[0].gender, Gender.male, "Get sons - son's gender doesn't match")
 
         print("Test MTF_UT_0015 ----> PASSED")
 
@@ -347,14 +339,16 @@ class TestMember(TestCase):
         son = Member(18, "Son", "Male")
         daughter = Member(19, "Daughter", "Female")
 
-        self.assertEqual(member.get_daughters(), [])
+        self.assertEqual(member.get_daughters(), [], "Get daughters - unexpected daughters")
+
         member.children.append(son)
-        self.assertEqual(member.get_daughters(), [])
+        self.assertEqual(member.get_daughters(), [], "Get daughters - son is actually a daughter")
+
         member.children.append(daughter)
         daughters = member.get_daughters()
-        self.assertEqual(len(daughters), 1)
-        self.assertEqual(daughters[0].name, "Daughter")
-        self.assertEqual(daughters[0].gender, Gender.female)
+        self.assertEqual(len(daughters), 1, "Get daughters - no, of daughters doesn't match")
+        self.assertEqual(daughters[0].name, "Daughter", "Get daughters - daughter's name doesn't match")
+        self.assertEqual(daughters[0].gender, Gender.female, "Get daughters - daughter's name doesn't match")
 
         print("Test MTF_UT_0016 ----> PASSED")
 
@@ -364,14 +358,14 @@ class TestMember(TestCase):
         son = Member(22, "Son", "Male")
         daughter = Member(23, "Daughter", "Female")
 
-        self.assertEqual(member.get_siblings(), [])
+        self.assertEqual(member.get_siblings(), [], "Get siblings - unexpected mother")
 
         member.mother = mother
-        self.assertEqual(member.get_siblings(), [])
+        self.assertEqual(member.get_siblings(), [], "Get siblings - unexpected siblings")
 
         member.mother.children.extend([member, son, daughter])
         siblings = member.get_siblings()
-        self.assertEqual(len(siblings), 2)
+        self.assertEqual(len(siblings), 2, "Get siblings - no. of siblings doesn't match")
 
         print("Test MTF_UT_0017 ----> PASSED")
 
@@ -388,7 +382,7 @@ class TestMember(TestCase):
                               mock_get_maternal_uncle, mock_get_brother_in_law, mock_get_sister_in_law, mock_get_sons,
                               mock_get_daughters, mock_get_siblings):
 
-        self.assertEqual(self.member.get_relationship('invalid_relationship'), [])
+        self.assertEqual(self.member.get_relationship('invalid_relationship'), [], "Get relationship - unknown relationship was accepted")
 
         self.member.get_relationship('paternal_aunt')
         mock_get_paternal_aunt.assert_called_with()
