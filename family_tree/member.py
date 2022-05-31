@@ -131,3 +131,23 @@ class Member:
             return []
 
         return list(filter(lambda x: x.name != self.name, self.mother.children))
+
+    def get_relationship(self, relationship_type):
+        relationship_method_switch = {
+            'paternal_aunts': self.get_paternal_aunt(),
+            'paternal_uncles': self.get_paternal_uncle(),
+            'maternal_aunts': self.get_maternal_aunt(),
+            'maternal_uncles': self.get_maternal_uncle(),
+            'brothers_in_law': self.get_brother_in_law(),
+            'sisters_in_law': self.get_sister_in_law(),
+            'sons': self.get_sons(),
+            'daughters': self.get_daughters(),
+            'siblings': self.get_siblings()
+        }
+
+        relationship_method = relationship_method_switch.get(relationship_type, None)
+
+        if relationship_method:
+            return relationship_method
+        else:
+            return []

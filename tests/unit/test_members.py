@@ -374,3 +374,47 @@ class TestMember(TestCase):
         self.assertEqual(len(siblings), 2)
 
         print("Test MTF_UT_0017 ----> PASSED")
+
+    @patch('family_tree.member.Member.get_siblings')
+    @patch('family_tree.member.Member.get_daughters')
+    @patch('family_tree.member.Member.get_sons')
+    @patch('family_tree.member.Member.get_sister_in_law')
+    @patch('family_tree.member.Member.get_brother_in_law')
+    @patch('family_tree.member.Member.get_maternal_uncle')
+    @patch('family_tree.member.Member.get_maternal_aunt')
+    @patch('family_tree.member.Member.get_paternal_uncle')
+    @patch('family_tree.member.Member.get_paternal_aunt')
+    def test_get_relationship(self, mock_get_paternal_aunt, mock_get_paternal_uncle, mock_get_maternal_aunt,
+                              mock_get_maternal_uncle, mock_get_brother_in_law, mock_get_sister_in_law, mock_get_sons,
+                              mock_get_daughters, mock_get_siblings):
+
+        self.assertEqual(self.member.get_relationship('invalid_relationship'), [])
+
+        self.member.get_relationship('paternal_aunt')
+        mock_get_paternal_aunt.assert_called_with()
+
+        self.member.get_relationship('paternal_uncle')
+        mock_get_paternal_uncle.assert_called_with()
+
+        self.member.get_relationship('maternal_aunt')
+        mock_get_maternal_aunt.assert_called_with()
+
+        self.member.get_relationship('maternal_uncle')
+        mock_get_maternal_uncle.assert_called_with()
+
+        self.member.get_relationship('brother_in_law')
+        mock_get_brother_in_law.assert_called_with()
+
+        self.member.get_relationship('sister_in_law')
+        mock_get_sister_in_law.assert_called_with()
+
+        self.member.get_relationship('sons')
+        mock_get_sons.assert_called_with()
+
+        self.member.get_relationship('daughters')
+        mock_get_daughters.assert_called_with()
+
+        self.member.get_relationship('siblings')
+        mock_get_siblings.assert_called_with()
+
+        print("Test MTF_UT_0018 ----> PASSED")
