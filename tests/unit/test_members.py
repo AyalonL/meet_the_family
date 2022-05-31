@@ -36,6 +36,8 @@ class TestMember(TestCase):
         # edge case for gender
         self.assertRaises(ValueError, Member, 2, "SomeOtherPerson", "Something")
 
+        print("Test MTF_UT_0001 ----> PASSED")
+
     def test_set_mother(self):
         mother_demo_a = "mother_demo_a"
         mother_demo_b = Member(2, "mother_demo_b", "Male")
@@ -49,6 +51,8 @@ class TestMember(TestCase):
         self.member.set_mother(mother_demo_c)
         self.assertEqual(self.member.mother.name, "mother_demo_c")
         self.assertEqual(self.member.mother.gender, Gender.female)
+
+        print("Test MTF_UT_0002 ----> PASSED")
 
     def test_set_father(self):
         father_demo_a = "father_demo_a"
@@ -64,6 +68,8 @@ class TestMember(TestCase):
         self.assertEqual(self.member.father.name, "father_demo_c")
         self.assertEqual(self.member.father.gender, Gender.male)
 
+        print("Test MTF_UT_0003 ----> PASSED")
+
     def test_set_spouse(self):
         spouse_demo_a = "spouse_demo_a"
         spouse_demo_b = Member(2, "spouse_demo_b", "Male")
@@ -78,6 +84,8 @@ class TestMember(TestCase):
         self.assertEqual(self.member.spouse.name, "spouse_demo_c")
         self.assertEqual(self.member.spouse.gender, Gender.female)
 
+        print("Test MTF_UT_0004 ----> PASSED")
+
     def test_add_child(self):
         child_demo_a = "child_demo_a"
         child_demo_b = Member(4, "child_demo_b", "Female")
@@ -90,6 +98,8 @@ class TestMember(TestCase):
         self.assertEqual(len(self.member.children), 1)
         self.assertEqual(self.member.children[0].name, "child_demo_b")
         self.assertEqual(self.member.children[0].gender, Gender.female)
+
+        print("Test MTF_UT_0005 ----> PASSED")
 
     def test_get_paternal_grandmother(self):
         member = Member(5, "NewMember", "Male")
@@ -105,6 +115,8 @@ class TestMember(TestCase):
         member.father.mother = grandmother
         self.assertEqual(member.get_paternal_grandmother(), grandmother)
 
+        print("Test MTF_UT_0006 ----> PASSED")
+
     def test_get_maternal_grandmother(self):
         member = Member(8, "NewMember", "Male")
         mother = Member(9, "NewMemberMother", "Female")
@@ -119,6 +131,8 @@ class TestMember(TestCase):
         member.mother.mother = grandmother
         self.assertEqual(member.get_maternal_grandmother(), grandmother)
 
+        print("Test MTF_UT_0007 ----> PASSED")
+
     def test_get_spouse_mother(self):
         member = Member(11, "NewMember", "Male")
         spouse = Member(12, "NewMemberSpouse", "Female")
@@ -132,6 +146,8 @@ class TestMember(TestCase):
 
         member.spouse.mother = spouse_mother
         self.assertEqual(member.get_spouse_mother(), spouse_mother)
+
+        print("Test MTF_UT_0008 ----> PASSED")
 
     # a mock returns a dummy value instead of calling the function
     @patch('family_tree.member.Member.get_paternal_grandmother', side_effect=[
@@ -159,6 +175,8 @@ class TestMember(TestCase):
 
         # to check that the mock_get_paternal_grandmother was called instead of self.member.get_paternal_grandmother
         mock_get_paternal_grandmother.assert_called_with()
+
+        print("Test MTF_UT_0009 ----> PASSED")
 
     # a mock returns a dummy value instead of calling the function
     @patch('family_tree.member.Member.get_paternal_grandmother', side_effect=[
@@ -188,6 +206,8 @@ class TestMember(TestCase):
         # to check that the mock_get_paternal_grandmother was called instead of self.member.get_paternal_grandmother
         mock_get_paternal_grandmother.assert_called_with()
 
+        print("Test MTF_UT_0010 ----> PASSED")
+
     # a mock returns a dummy value instead of calling the function
     @patch('family_tree.member.Member.get_maternal_grandmother', side_effect=[
         None,
@@ -216,6 +236,8 @@ class TestMember(TestCase):
         # to check that the mock_get_maternal_grandmother was called instead of self.member.get_maternal_grandmother
         mock_get_maternal_grandmother.assert_called_with()
 
+        print("Test MTF_UT_0011 ----> PASSED")
+
     # a mock returns a dummy value instead of calling the function
     @patch('family_tree.member.Member.get_maternal_grandmother', side_effect=[
         None,
@@ -243,6 +265,8 @@ class TestMember(TestCase):
         # to check that the mock_get_maternal_grandmother was called instead of self.member.get_maternal_grandmother
         mock_get_maternal_grandmother.assert_called_with()
 
+        print("Test MTF_UT_0012 ----> PASSED")
+
     @patch('family_tree.member.Member.get_spouse_mother', side_effect=[
         None,
         create_fake_member(),
@@ -269,6 +293,8 @@ class TestMember(TestCase):
 
         # to check that the mock_get_spouse_mother was called instead of self.member.get_spouse_mother
         mock_get_spouse_mother.assert_called_with()
+
+        print("Test MTF_UT_0013 ----> PASSED")
 
     @patch('family_tree.member.Member.get_spouse_mother', side_effect=[
         None,
@@ -298,6 +324,8 @@ class TestMember(TestCase):
         # to check that the mock_get_spouse_mother was called instead of self.member.get_spouse_mother
         mock_get_spouse_mother.assert_called_with()
 
+        print("Test MTF_UT_0014 ----> PASSED")
+
     def test_get_sons(self):
         member = Member(14, "Dummy", "Male")
         son = Member(15, "Son", "Male")
@@ -311,6 +339,8 @@ class TestMember(TestCase):
         self.assertEqual(len(sons), 1)
         self.assertEqual(sons[0].name, "Son")
         self.assertEqual(sons[0].gender, Gender.male)
+
+        print("Test MTF_UT_0015 ----> PASSED")
 
     def test_get_daughters(self):
         member = Member(17, "Dummy", "Male")
@@ -326,6 +356,8 @@ class TestMember(TestCase):
         self.assertEqual(daughters[0].name, "Daughter")
         self.assertEqual(daughters[0].gender, Gender.female)
 
+        print("Test MTF_UT_0016 ----> PASSED")
+
     def test_get_siblings(self):
         member = Member(20, "Dummy", "Male")
         mother = Member(21, "Mother", "Female")
@@ -340,3 +372,5 @@ class TestMember(TestCase):
         member.mother.children.extend([member, son, daughter])
         siblings = member.get_siblings()
         self.assertEqual(len(siblings), 2)
+
+        print("Test MTF_UT_0017 ----> PASSED")
