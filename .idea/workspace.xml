@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="bbdc4162-98b1-4976-a8c1-e2a97815ba5d" name="Changes" comment="Integration and unit tests for family_tree.py added" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="Dev" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Dev" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="29qIdV0UAgyU4SZ0arrrMNlSYdB" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/ayalon/git@github.com:AyalonL/meet_the_family.git/tests&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bbdc4162-98b1-4976-a8c1-e2a97815ba5d" name="Changes" comment="" />
+      <created>1653834275169</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1653834275169</updated>
+    </task>
+    <task id="LOCAL-00001" summary="test">
+      <created>1653836166556</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1653836166556</updated>
+    </task>
+    <task id="LOCAL-00002" summary="test">
+      <created>1653836249474</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1653836249474</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Travis file added">
+      <created>1653836592759</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1653836592759</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Travis file added">
+      <created>1653841418278</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1653841418278</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Travis file added">
+      <created>1653841923338</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1653841923338</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added requirements.txt and updated travis.yml">
+      <created>1653882585437</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1653882585437</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Add Member class and methods together with unit tests">
+      <created>1653895962798</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1653895962798</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Updated travis.yml">
+      <created>1653896866599</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1653896866599</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Update README file">
+      <created>1653898282314</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1653898282314</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Update README file">
+      <created>1653898351461</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1653898351461</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Update .travis.yml">
+      <created>1653898965028</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1653898965028</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Update .travis.yml">
+      <created>1653899456040</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1653899456040</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Add relationships and tests">
+      <created>1653919764986</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1653919764986</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Bug codex added, and some comments on tests">
+      <created>1653978278101</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1653978278102</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Integration test added">
+      <created>1653985278272</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1653985278272</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Integration and unit tests added">
+      <created>1654007371580</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1654007371580</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Integration and unit tests for family_tree.py added">
+      <created>1654082471514</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1654082471514</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Integration and unit tests for family_tree.py added">
+      <created>1654082764381</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1654082764381</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="24388a81-8822-468b-8e30-d6efab64f91f">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:/home/ayalon/git@github.com:AyalonL/meet_the_family.git/venv" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="Develop" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test" />
+    <MESSAGE value="Travis file added" />
+    <MESSAGE value="Added requirements.txt and updated travis.yml" />
+    <MESSAGE value="Add Member class and methods together with unit tests" />
+    <MESSAGE value="Updated travis.yml" />
+    <MESSAGE value="Update README file" />
+    <MESSAGE value="Update .travis.yml" />
+    <MESSAGE value="Add relationships and tests" />
+    <MESSAGE value="Bug codex added, and some comments on tests" />
+    <MESSAGE value="Integration test added" />
+    <MESSAGE value="Integration and unit tests added" />
+    <MESSAGE value="Integration and unit tests for family_tree.py added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Integration and unit tests for family_tree.py added" />
+  </component>
+</project>

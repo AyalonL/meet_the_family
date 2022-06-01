@@ -1,0 +1,9 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_29_05_2022,_19_22_[Changes]1" date="1653841364503" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_29_05_2022,_19_22_[Changes]1/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 29/05/2022, 19:22 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="travis.tml" />
+    <option name="AFTER_PATH" value="travis.yml" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_29_05_2022,_19_22_[Changes]1/travis.yml" />
+  </binary>
+</changelist>
