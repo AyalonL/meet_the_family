@@ -9,7 +9,6 @@ class TestFamilyTree(TestCase):
     def setUp(self):
         self.ftree = FamilyTree()
 
-
     def test_add_child(self):
         result = self.ftree.add_child("Father", "Male")
         self.assertEqual(result, "CHILD_ADDITION_SUCCEEDED", "Family tree is not empty")
@@ -83,4 +82,3 @@ class TestFamilyTree(TestCase):
                          "Sons were not found")
 
         print("Test MTF_IT_0004 ----> PASSED")
-
