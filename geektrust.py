@@ -1,16 +1,4 @@
-class FamilyTree:
-
-    def __init__(self):
-        self.family_tree = {}
-
-    def add_child(self):
-        return 'CHILD_ADDITION_SUCCEEDED'
-
-    def add_spouse(self):
-        return 'SPOUSE_ADDITION_SUCCEEDED'
-
-    def get_relationship(self):
-        return 'NONE'
+from family_tree.family_tree import FamilyTree
 
 
 class GeekTrust:

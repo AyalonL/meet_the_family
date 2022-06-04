@@ -23,7 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Dev" />
+        <entry key="$PROJECT_DIR$" value="develop_tutorial" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -228,7 +228,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="Develop" />
+                        <option value="Dev" />
                       </list>
                     </value>
                   </entry>
