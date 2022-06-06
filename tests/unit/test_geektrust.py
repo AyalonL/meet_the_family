@@ -1,5 +1,5 @@
 from unittest import TestCase
-from unittest.mock import patch, mock_open, MagicMock
+from unittest.mock import patch
 from geektrust import GeekTrust
 
 

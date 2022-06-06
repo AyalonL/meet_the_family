@@ -24,4 +24,4 @@ class TestSystem(TestCase):
             ]
         )
 
-        print("Test MTF_IT_0008 ----> PASSED")
+        print("Test MTF_ST_0001 ----> PASSED")

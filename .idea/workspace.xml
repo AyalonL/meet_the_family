@@ -4,23 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bbdc4162-98b1-4976-a8c1-e2a97815ba5d" name="Changes" comment="Merging all the code and combining FamilyTree">
-      <change afterPath="$PROJECT_DIR$/Guidelines" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/instructions.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/system/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/system/test_system.py" afterDir="false" />
+    <list default="true" id="bbdc4162-98b1-4976-a8c1-e2a97815ba5d" name="Changes" comment="Finish project, add tests and system test. Added initialization">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/family_tree/family_tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/family_tree/family_tree.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/family_tree/member.py" beforeDir="false" afterPath="$PROJECT_DIR$/family_tree/member.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geektrust.py" beforeDir="false" afterPath="$PROJECT_DIR$/geektrust.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/.~lock.Meet_the_Family bug codex.xlsx#" beforeDir="false" afterPath="$PROJECT_DIR$/tests/.~lock.Meet_the_Family bug codex.xlsx#" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Meet_the_Family bug codex.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Meet_the_Family bug codex.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/integration/test_family_tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/integration/test_family_tree.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/integration/test_geektrust.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/integration/test_geektrust.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit/test_family_tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/test_family_tree.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/integration/test_member.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/integration/test_member.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/system/test_system.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/system/test_system.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/unit/test_geektrust.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/test_geektrust.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit/test_members.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/test_members.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,7 +204,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654319875547</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Finish project, add tests and system test. Added initialization">
+      <created>1654513815821</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1654513815821</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -278,6 +276,7 @@
     <MESSAGE value="Integration and unit tests added" />
     <MESSAGE value="Integration and unit tests for family_tree.py added" />
     <MESSAGE value="Merging all the code and combining FamilyTree" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merging all the code and combining FamilyTree" />
+    <MESSAGE value="Finish project, add tests and system test. Added initialization" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finish project, add tests and system test. Added initialization" />
   </component>
 </project>
