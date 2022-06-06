@@ -34,7 +34,7 @@ class FamilyTree:
             self.family_tree[father.name].add_child(member)
             self.family_tree[name] = member
             return 'CHILD_ADDITION_SUCCEEDED'
-        except ValueError as e:
+        except ValueError:
             return 'CHILD_ADDITION_FAILED'
 
     def add_spouse(self, name, gender, spouse_name):
@@ -61,7 +61,7 @@ class FamilyTree:
             self.family_tree[spouse.name].set_spouse(member)
             self.family_tree[name] = member
             return 'SPOUSE_ADDITION_SUCCEEDED'
-        except ValueError as e:
+        except ValueError:
             return 'SPOUSE_ADDITION_FAILED'
 
     def get_relationship(self, name, relationship_type):
@@ -73,4 +73,4 @@ class FamilyTree:
         if not result:
             return 'NONE'
         else:
-            return list(map(lambda x: x.name, sorted(result, key=lambda key: key.id)))
+            return ' '.join(list(map(lambda x: x.name, sorted(result, key=lambda key: key.id))))

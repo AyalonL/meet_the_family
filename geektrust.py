@@ -1,10 +1,11 @@
+import sys
 from family_tree.family_tree import FamilyTree
 
 
 class GeekTrust:
 
     def __init__(self):
-        self.family_tree = FamilyTree
+        self.family_tree = FamilyTree()
 
     def construct_add_child_method_call(self, *args):
         if len(args) < 2 or len(args) > 3:
@@ -33,14 +34,14 @@ class GeekTrust:
         if len(args) != 2:
             return None
         switch_relationship = {
-            'Paternal-Aunts': 'paternal_aunts',
-            'Paternal-Uncles': 'paternal_uncles',
-            'Maternal-Aunts': 'maternal_aunts',
-            'Maternal-Uncles': 'maternal_uncles',
-            'Brothers-In-Law': 'brothers_in_law',
-            'Sisters-In-Law': 'sisters_in_law',
-            'Sons': 'sons',
-            'Daughters': 'daughters',
+            'Paternal-Aunt': 'paternal_aunts',
+            'Paternal-Uncle': 'paternal_uncles',
+            'Maternal-Aunt': 'maternal_aunts',
+            'Maternal-Uncle': 'maternal_uncles',
+            'Brother-In-Law': 'brothers_in_law',
+            'Sister-In-Law': 'sisters_in_law',
+            'Son': 'sons',
+            'Daughter': 'daughters',
             'Siblings': 'siblings'
         }
         relationship_type = switch_relationship.get(args[1], None)
@@ -62,7 +63,7 @@ class GeekTrust:
 
         results = []
         for instruction in instructions:
-            tokens = instruction.split(" ")
+            tokens = instruction.strip().split(" ")
             construct_method = switch_construct_method.get(tokens[0], None)
             if not construct_method:
                 continue
@@ -76,6 +77,7 @@ class GeekTrust:
     def execute(self, instructions):
         results = []
         for instruction in instructions:
+            # print(instruction)
             result = eval(instruction)
             if not result:
                 continue
@@ -91,6 +93,14 @@ class GeekTrust:
         commands = self.translate(filename)
         self.execute(commands)
 
+    def main(self, filename):
+        self.setup('./setup.instructions.txt')
+        commands = self.translate(filename)
+        results = self.execute(commands)
+        self.log(results)
+
 
 if __name__ == "__main__":
-    print("Hello World")
+    geektrust = GeekTrust()
+    filename = sys.argv[1]
+    geektrust.main(filename)

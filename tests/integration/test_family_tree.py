@@ -78,7 +78,7 @@ class TestFamilyTree(TestCase):
         self.ftree.family_tree["Son_a"] = son_a
 
         self.assertEqual(self.ftree.get_relationship("Member", "daughters"), "NONE", "Unknown daughters")
-        self.assertEqual(self.ftree.get_relationship("Member", "sons"), ["Son_a", "Son_b"],
+        self.assertEqual(self.ftree.get_relationship("Member", "sons"), "Son_a Son_b",
                          "Sons were not found")
 
         print("Test MTF_IT_0004 ----> PASSED")

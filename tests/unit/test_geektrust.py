@@ -19,7 +19,7 @@ class TestGeekTrust(TestCase):
         self.assertEqual(result_of_three_args, 'self.family_tree.add_child("Member", "Male", "Mother")',
                          "Child was not added to family tree")
 
-        print("Test MTF_UT_0022 ----> PASSED")
+        print("Test MTF_UT_0025 ----> PASSED")
 
     def test_construct_add_spouse_method_call(self):
         result_of_two_args = self.geektrust_app.construct_add_spouse_method_call("Spouse", "Female")
@@ -30,11 +30,11 @@ class TestGeekTrust(TestCase):
         self.assertEqual(result_of_three_args, 'self.family_tree.add_spouse("Spouse", "Female", "Member")',
                          "Spouse was not added to family tree")
 
-        print("Test MTF_UT_0023 ----> PASSED")
+        print("Test MTF_UT_0026 ----> PASSED")
 
     def test_construct_get_relationship_method_call(self):
         result_of_one_args = self.geektrust_app.construct_get_relationship_method_call("Member")
-        result_of_two_args = self.geektrust_app.construct_get_relationship_method_call("Member", "Sisters-In-Law")
+        result_of_two_args = self.geektrust_app.construct_get_relationship_method_call("Member", "Sister-In-Law")
         result_invalid_args = self.geektrust_app.construct_get_relationship_method_call("Member", "Random")
 
         self.assertEqual(result_of_one_args, None,
@@ -44,7 +44,7 @@ class TestGeekTrust(TestCase):
         self.assertEqual(result_invalid_args, None,
                          "Invalid relationship was found")
 
-        print("Test MTF_UT_0024 ----> PASSED")
+        print("Test MTF_UT_0027 ----> PASSED")
 
     @patch('geektrust.GeekTrust.construct_add_child_method_call',
            return_value='self.family_tree.add_child("Member", "Male", "Mother")')
@@ -59,7 +59,7 @@ class TestGeekTrust(TestCase):
             mock_open.return_value.__enter__.return_value.readlines.return_value = (
                 'ADD_CHILD Mother Member Male',
                 'ADD_SPOUSE Member Spouse Female',
-                'GET_RELATIONSHIP Member brothers-in-law'
+                'GET_RELATIONSHIP Member brother-in-law'
                 )
             result = self.geektrust_app.translate('dummy_file.txt')
             self.assertEqual(
@@ -70,7 +70,7 @@ class TestGeekTrust(TestCase):
                     'self.family_tree.get_relationship("Member", "brothers_in_law")'
                 ])
 
-        print("Test MTF_UT_0025 ----> PASSED")
+        print("Test MTF_UT_0028 ----> PASSED")
 
     @patch('geektrust.FamilyTree.get_relationship', return_value="NONE")
     @patch('geektrust.FamilyTree.add_spouse', return_value="SPOUSE_ADDITION_SUCCEEDED")
@@ -89,7 +89,7 @@ class TestGeekTrust(TestCase):
         mock_add_spouse.assert_called_with("Spouse", "Female", "Member")
         mock_get_relationship.assert_called_with("Member", "brothers_in_law")
 
-        print("Test MTF_UT_0026 ----> PASSED")
+        print("Test MTF_UT_0029 ----> PASSED")
 
     @patch('builtins.print')
     def test_log(self, mock_print):
@@ -104,7 +104,7 @@ class TestGeekTrust(TestCase):
         mock_print.assert_called_with("NONE")
 
         # Line below cannot print because print is mocked...
-        print("Test MTF_UT_0027 ----> PASSED")
+        print("Test MTF_UT_0030 ----> PASSED")
 
     @patch('geektrust.GeekTrust.execute')
     @patch('geektrust.GeekTrust.translate', return_value='RESULT')
@@ -113,4 +113,4 @@ class TestGeekTrust(TestCase):
         mock_translate.assert_called_with('filename')
         mock_execute.assert_called_with('RESULT')
 
-        print("Test MTF_UT_0028 ----> PASSED")
+        print("Test MTF_UT_0031 ----> PASSED")

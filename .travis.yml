@@ -6,3 +6,5 @@ install:
 script:
   - python3 -m unittest discover -s "./tests/unit/" -p "test_*.py"
   - python3 -m unittest discover -s "./tests/integration/" -p "test_*.py"
+  - python3 -m unittest discover -s "./tests/system/" -p "test_*.py"
+  - flake8

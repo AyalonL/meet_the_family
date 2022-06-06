@@ -104,7 +104,7 @@ class TestFamilyTree(TestCase):
         self.ftree.family_tree["Member"] = Member(1, "Member", "Male")
         self.assertEqual(self.ftree.get_relationship("Member", "brothers_in_Law"), "NONE",
                          "There are some unexpected brothers-in-lay")
-        self.assertEqual(self.ftree.get_relationship("Member", "brothers_in_Law"), ["Member", "Spouse"],
+        self.assertEqual(self.ftree.get_relationship("Member", "brothers_in_Law"), "Member Spouse",
                          "Unknown person in family tree")
 
         print("Test MTF_UT_0021 ----> PASSED")

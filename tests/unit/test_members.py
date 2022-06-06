@@ -6,7 +6,7 @@ from tests.unit import create_fake_member
 
 
 class TestMember(TestCase):
-    
+
     def setUp(self):
         self.member = Member(1, "Name", "Male")
 
@@ -257,62 +257,64 @@ class TestMember(TestCase):
 
         print("Test MTF_UT_0012 ----> PASSED")
 
-    @patch('family_tree.member.Member.get_spouse_mother', side_effect=[
-        None,
-        create_fake_member(),
-        create_fake_member(children=[Member(3, "Spouse", "Female")]),
-        create_fake_member(children=[Member(3, "Spouse", "Female"), Member(4, "Sister-In-Law", "Female")]),
+    @patch('family_tree.member.Member.get_siblings', return_value=[
         create_fake_member(
-            children=[Member(3, "Spouse", "Female"), Member(4, "Brother-In-Law", "Male"), Member(5, "Sister-In-Law", "Female")])
+            name="A", gender=Gender.male, spouse=create_fake_member(
+                name="B", gender=Gender.female, spouse=create_fake_member(
+                    name="A"
+                )
+            )
+        ),
+        create_fake_member(
+            name="C", gender=Gender.female, spouse=create_fake_member(
+                name="D", gender=Gender.male, spouse=create_fake_member(
+                    name="C"
+                )
+            )
+        ),
+        create_fake_member(
+            name="C", gender=Gender.female
+        )
     ])
-    def test_get_brother_in_law(self, mock_get_spouse_mother):
-        self.member.spouse = Member(3, "Spouse", "Female")
-        # check if get_spouse_mother has been replaced by a mock
-        self.assertEqual(isinstance(self.member.get_spouse_mother, Mock), True)
+    def test_get_siblings_spouses(self, mock_get_siblings):
+        self.assertEqual(len(self.member.get_siblings_spouses()), 2, "No. of siblings spouses doesn't match")
 
-        # check for None values
-        self.assertEqual(self.member.get_brother_in_law(), [], "Get brother in law - unexpected spouse mother")
-        self.assertEqual(self.member.get_brother_in_law(), [], "Get brother in law - spouse mother has unknown children")
-        self.assertEqual(self.member.get_brother_in_law(), [], "Get brother in law - unexpected brothers in law")
-        self.assertEqual(self.member.get_brother_in_law(), [], "Get brother in law - some brothers in law are actually sisters in law")
+        print("Test MTF_UT_0023 ----> PASSED")
 
-        brother_in_law = self.member.get_brother_in_law()
-        self.assertEqual(len(brother_in_law), 1, "Get brother in law - no. of brothers in law doesn't match")
-        self.assertEqual(brother_in_law[0].name, "Brother-In-Law", "Get brother in law - brother's in law name doesn't match")
-        self.assertEqual(brother_in_law[0].gender, Gender.male, "Get brother in law - brother's in law gender doesn't match")
+    def test_get_spouse_siblings(self):
+        self.assertEqual(len(self.member.get_spouse_siblings()), 0, "Unknown spouse found")
+        self.member.spouse = create_fake_member(name="Spouse")
+        self.member.spouse.get_siblings.return_value = [
+            create_fake_member(name="A"),
+            create_fake_member(name="B")
+        ]
+        self.assertEqual(len(self.member.get_spouse_siblings()), 2, "No. of spouses sibling doesn't match")
 
-        # to check that the mock_get_spouse_mother was called instead of self.member.get_spouse_mother
-        mock_get_spouse_mother.assert_called_with()
+        print("Test MTF_UT_0024 ----> PASSED")
+
+    @patch('family_tree.member.Member.get_spouse_siblings', return_value=[
+        create_fake_member(name="A", gender=Gender.male),
+        create_fake_member(name="B", gender=Gender.female)
+    ])
+    @patch('family_tree.member.Member.get_siblings_spouses', return_value=[
+        create_fake_member(name="C", gender=Gender.male),
+        create_fake_member(name="D", gender=Gender.female)
+    ])
+    def test_get_brother_in_law(self, mock_get_siblings_spouses, mock_get_spouse_siblings):
+        self.assertEqual(len(self.member.get_brother_in_law()), 2, "No. of brothers-in-law doesn't match")
 
         print("Test MTF_UT_0013 ----> PASSED")
 
-    @patch('family_tree.member.Member.get_spouse_mother', side_effect=[
-        None,
-        create_fake_member(),
-        create_fake_member(children=[Member(3, "Spouse", "Female")]),
-        create_fake_member(children=[Member(3, "Spouse", "Female"), Member(4, "Brother-In-Law", "Male")]),
-        create_fake_member(
-            children=[Member(3, "Spouse", "Female"), Member(4, "Brother-In-Law", "Male"),
-                      Member(5, "Sister-In-Law", "Female")])
+    @patch('family_tree.member.Member.get_spouse_siblings', return_value=[
+        create_fake_member(name="A", gender=Gender.male),
+        create_fake_member(name="B", gender=Gender.female)
     ])
-    def test_get_sister_in_law(self, mock_get_spouse_mother):
-        self.member.spouse = Member(3, "Spouse", "Female")
-        # check if get_spouse_mother has been replaced by a mock
-        self.assertEqual(isinstance(self.member.get_spouse_mother, Mock), True)
-
-        # check for None values
-        self.assertEqual(self.member.get_sister_in_law(), [], "Get sister in law - unexpected spouse mother")
-        self.assertEqual(self.member.get_sister_in_law(), [], "Get sister in law - spouse mother has unknown children")
-        self.assertEqual(self.member.get_sister_in_law(), [], "Get sister in law - unexpected sisters in law")
-        self.assertEqual(self.member.get_sister_in_law(), [], "Get sister in law - some sisters in law are actually brothers in law")
-
-        sister_in_law = self.member.get_sister_in_law()
-        self.assertEqual(len(sister_in_law), 1, "Get sister in law - no. of sisters in law doesn't match")
-        self.assertEqual(sister_in_law[0].name, "Sister-In-Law", "Get sister in law - sister's in law name doesn't match")
-        self.assertEqual(sister_in_law[0].gender, Gender.female, "Get sister in law - sister's in law gender doesn't match")
-
-        # to check that the mock_get_spouse_mother was called instead of self.member.get_spouse_mother
-        mock_get_spouse_mother.assert_called_with()
+    @patch('family_tree.member.Member.get_siblings_spouses', return_value=[
+        create_fake_member(name="C", gender=Gender.male),
+        create_fake_member(name="D", gender=Gender.female)
+    ])
+    def test_get_sister_in_law(self, mock_get_siblings_spouses, mock_get_spouse_siblings):
+        self.assertEqual(len(self.member.get_brother_in_law()), 2, "No. of sisters-in-law doesn't match")
 
         print("Test MTF_UT_0014 ----> PASSED")
 
@@ -382,7 +384,8 @@ class TestMember(TestCase):
                               mock_get_maternal_uncle, mock_get_brother_in_law, mock_get_sister_in_law, mock_get_sons,
                               mock_get_daughters, mock_get_siblings):
 
-        self.assertEqual(self.member.get_relationship('invalid_relationship'), [], "Get relationship - unknown relationship was accepted")
+        self.assertEqual(self.member.get_relationship('invalid_relationship'), [],
+                         "Get relationship - unknown relationship was accepted")
 
         self.member.get_relationship('paternal_aunt')
         mock_get_paternal_aunt.assert_called_with()

@@ -96,21 +96,29 @@ class Member:
             return []
         return list(filter(lambda x: x.gender == Gender.male, grandmother.children))
 
+    def get_siblings_spouses(self):
+        siblings = self.get_siblings()
+        if not siblings:
+            return []
+        siblings_spouses = [sibling.spouse for sibling in siblings if sibling.spouse]
+        return siblings_spouses
+
+    def get_spouse_siblings(self):
+        if not self.spouse:
+            return[]
+        return self.spouse.get_siblings()
+
     def get_brother_in_law(self):
-        spouses_mother = self.get_spouse_mother()
-        if not spouses_mother:
+        results = self.get_siblings_spouses() + self.get_spouse_siblings()
+        if not results:
             return []
-        if not spouses_mother.children:
-            return []
-        return list(filter(lambda x: x.gender == Gender.male and x.name != self.spouse.name, spouses_mother.children))
+        return list(filter(lambda x: x.gender == Gender.male, results))
 
     def get_sister_in_law(self):
-        spouses_mother = self.get_spouse_mother()
-        if not spouses_mother:
+        results = self.get_siblings_spouses() + self.get_spouse_siblings()
+        if not results:
             return []
-        if not spouses_mother.children:
-            return []
-        return list(filter(lambda x: x.gender == Gender.female and x.name != self.spouse.name, spouses_mother.children))
+        return list(filter(lambda x: x.gender == Gender.female, results))
 
     def get_sons(self):
         if not self.children:
